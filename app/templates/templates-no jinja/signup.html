@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <div class="nav">
+        <div class="container">
+            <ul class="pull-left">
+                <li>The bucketlist</li>
+            </ul>
+            <ul class="pull-right">
+                <li><button type="button" class="btn" data-toggle="modal" data-target="#myModal">
+                        Log In
+                    </button></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="login-container">
+                <div class="form">
+                    <form method="POST" action="/login">
+
+                        <input type="username" name="username" placeholder="Username">
+                        <input type="password" name="password" placeholder="Password">
+                        <input type="submit" value="Log in" id="login">
+                        <p class="message">Not registered? <a href="/signup" class="account">Create an account</a></p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
