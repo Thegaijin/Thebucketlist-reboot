@@ -10,10 +10,25 @@ class BucketlistApp(object):
         self.loggedin = []
 
     def signup(self, username, password, confirmation_password):
+        '''
+        method to save users on sign up
+        :param username:
+        :param password:
+        :param confirmation password:
+        '''
         pass
 
     def login(self, username, password):
+        '''
+        Method to login existing users
+        :param username:
+        :param password:
+        '''
         pass
 
     def logout(self, username):
+        '''
+        Method to logout a currently logged in user
+        :param username:
+        '''
         pass

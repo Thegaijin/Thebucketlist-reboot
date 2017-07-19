@@ -1,6 +1,5 @@
 import unittest
 from app.models.bucketlistApp import BucketlistApp
-from app.models.users import User
 
 
 class BucketlistAppTestCase(unittest.TestCase):
@@ -14,6 +13,11 @@ class BucketlistAppTestCase(unittest.TestCase):
         self.user_names = self.current.user_names
         self.test_dict = self.current.users
         self.loggedin = self.current.loggedin
+
+    def test_bucketlistApp_instance(self):
+        self.assertIsInstance(
+            self.current, BucketlistApp,
+            msg='The object should be an instance of the BucketlistApp class')
 
     def test_if_user_can_sign_up(self):
         '''

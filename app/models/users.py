@@ -8,7 +8,13 @@ class User(object):
         self.username = username
         self.bucketlists = {}
 
-    def create_list(self):
+    def create_list(self, username, listname, details):
+        '''
+        Method to create lists
+        :param username:
+        :param listame:
+        :param details:
+        '''
         pass
 
     def view_list(self):
