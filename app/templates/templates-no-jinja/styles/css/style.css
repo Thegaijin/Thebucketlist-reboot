@@ -57,7 +57,7 @@ blockquote {
 }
 
 .jumbotron {
-    background-image: url('../images/fade.jpg');
+    background-image: url('templates-no-jinja/images/fade.jpg');
     height: 600px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -105,7 +105,7 @@ blockquote {
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
-    /* width: 100%; */
+    width: 100%;
     border: 0;
     margin: 0 0 15px;
     padding: 15px;
@@ -128,6 +128,10 @@ blockquote {
 .form .message a {
     color: #4CAF50;
     text-decoration: none;
+}
+
+.input-group {
+    margin-left: 70px;
 }
 
 #login {

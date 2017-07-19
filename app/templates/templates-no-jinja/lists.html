@@ -48,17 +48,17 @@
                                         </div>
                                         <div class="modal-body">
                                             <!--Add form-->
-                                            <form method="POST" action="/lists" class="list-form_ list">
+                                            <form method="POST" action="/lists">
 
-                                                <div class="input-group">
+                                                <div class="input-group" id="add_list">
 
-                                                    <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
-                                                    <input type="text" id="tbox" name='description' placeholder="description" class="form-control">
+                                                    <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control" required>
+                                                    <input type="text" id="tbox" name='description' placeholder="description" class="form-control" required>
                                                 </div>
 
 
                                                 <div class="modal-footer">
-                                                    <div class="col-md-7 col-md-offset-2">
+                                                    <div class="col-md-7">
                                                         <input type="submit" class="btn" value="Save list">
                                                     </div>
                                                 </div>

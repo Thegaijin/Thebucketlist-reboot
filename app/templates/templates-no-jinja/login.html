@@ -2,8 +2,10 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bell|Amatic+SC:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="styles/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/css/style.css">
 </head>
 
 <body>
@@ -26,8 +28,8 @@
                 <div class="form">
                     <form method="POST" action="/login">
 
-                        <input type="username" name="username" placeholder="Username">
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="username" name="username" placeholder="Username" required>
+                        <input type="password" name="password" placeholder="Password" required>
                         <input type="submit" value="Log in" id="login">
                         <p class="message">Not registered? <a href="/signup" class="account">Create an account</a></p>
                     </form>
@@ -36,6 +38,10 @@
             </div>
         </div>
     </div>
+    <script src="styles/js/jquery.min.js"></script>
+    <script src="styles/js/bootstrap.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </body>
 
 </html>
