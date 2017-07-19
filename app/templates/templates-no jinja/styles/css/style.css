@@ -42,11 +42,18 @@ blockquote {
     display: inline;
 }
 
+.pull-left li {
+    color: white;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
 .btn {
     background: white;
     font: #76b852;
     line-height: 1.02857143;
     margin: 4px;
+    border-color: #76b852;
 }
 
 .jumbotron {
@@ -76,7 +83,7 @@ blockquote {
 }
 
 
-/* login page */
+/* login and signup page */
 
 .login-container {
     width: 360px;
@@ -88,7 +95,7 @@ blockquote {
     position: relative;
     z-index: 1;
     background: #FFFFFF;
-    max-width: 1000px;
+    /* max-width: 1000px; */
     margin: 0 auto 0;
     padding: 45px;
     text-align: center;
@@ -98,7 +105,7 @@ blockquote {
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
-    width: 100%;
+    /* width: 100%; */
     border: 0;
     margin: 0 0 15px;
     padding: 15px;
@@ -126,4 +133,24 @@ blockquote {
 #login {
     color: white;
     background: #4CAF50;
+}
+
+
+/* Lists and items pages */
+
+.list-container {
+    width: 1000px;
+    margin: auto;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#lists-header {
+    text-align: center;
+    font-family: Bellefair;
+}
+
+.list-buttons,
+.close-lists {
+    padding: 5px 0 0 0;
+    text-align: center;
 }

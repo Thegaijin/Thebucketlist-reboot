@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <div class="nav">
+        <div class="container">
+            <ul class="pull-left">
+                <li>The bucketlist</li>
+            </ul>
+            <ul class="pull-right">
+                <li><button type="button" class="btn" data-toggle="modal" data-target="#myModal">
+                        Log In
+                    </button></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="list-container">
+
+                <div class="">
+                    <span id='lists-header'>
+            <h3 >Your lists</h3>
+        </span>
+                    <div class="list-buttons">
+                        <ul>
+                            <li>
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                        Add list
+                    </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                                <h4 class="modal-title" id="myModalLabel">Enter your list name</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!--Add form-->
+                                                <form method="POST" action="/lists" class="list-form_ list">
+                                                    <div class="container">
+                                                        <div class="input-group">
+
+                                                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
+                                                            <input type="text" id="tbox" name='description' placeholder="description" class="form-control">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <div class="col-md-7 col-md-offset-2">
+                                                            <input type="submit" class="btn btn-primary" value="Save list">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <li>
+                                    <span class="new-list">
+                                        <input type="submit" name="view list" value="view list" class="view-list btn">
+                                        </span>
+                                </li>
+                                <li>
+                                    <span class="new-list">
+                                        <input type="submit" name="update list" value="update list" class="update-list btn">
+                                        </span>
+                                </li>
+                                <li>
+                                    <span class="new-list">
+                                        <input type="submit" name="delete list" value="delete list" class="delete-list btn">
+                                        </span>
+                                </li>
+                        </ul>
+                    </div>
+
+                    <!--TABLE-->
+                    {% if userbuckets %}
+                    <div class="buckets-table">
+                        <table class="table table-condensed table-bordered">
+                            <tr>
+                                <th>Listname</th>
+                                <th>description</th>
+                                <th>Items</th>
+                            </tr>
+                            <tbody>
+                                {% for bucket in userbuckets %}
+                                <tr>
+                                    <td>{{ bucket}}</td>
+                                    <td>{{ userbuckets[bucket].details }}</td>
+                                    <td><a href="items.html">view items<a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!--{% else %}
+        <span id='empty-lists'>
+                <p class="text-center">You do no have any buckets yet</p>
+            </span>
+        {% endif %}-->
+
+        </div>
+    </div>
+        </div>
+    </div>
+</body>
+
+</html>
