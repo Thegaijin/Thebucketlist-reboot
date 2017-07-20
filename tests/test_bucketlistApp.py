@@ -15,6 +15,9 @@ class BucketlistAppTestCase(unittest.TestCase):
         self.loggedin = self.current.loggedin
 
     def test_bucketlistApp_instance(self):
+        '''
+        Test if instance of bucketlistApp class is successfully created
+        '''
         self.assertIsInstance(
             self.current, BucketlistApp,
             msg='The object should be an instance of the BucketlistApp class')

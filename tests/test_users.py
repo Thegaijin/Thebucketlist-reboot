@@ -1,7 +1,6 @@
 import unittest
 from app.models.users import User
 from app.models.lists import Lists
-from app.models.items import Items
 
 
 class UserTestCase(unittest.TestCase):
@@ -11,9 +10,15 @@ class UserTestCase(unittest.TestCase):
 
     def setUp(self):
         self.user = User('username')
-
         self.user_lists = self.user.bucketlists
-        self.buckets = self.user.usersbuckets
+
+    def test_User_instance(self):
+        '''
+        Test if instance of User class is successfully created
+        '''
+        self.assertIsInstance(
+            self.user, User,
+            msg='The object should be an instance of the User class')
 
     def test_creating_list(self):
         '''
