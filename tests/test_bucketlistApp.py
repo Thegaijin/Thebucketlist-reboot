@@ -64,5 +64,7 @@ class BucketlistAppTestCase(unittest.TestCase):
         '''
         Test if a username is removed from loggedin list on logout
         '''
+        self.current.login('Thegaijin', 'pswd')
         self.current.logout('username')
-        self.assertNotIn('username', self.loggedin)
+        self.assertNotIn('username', self.loggedin,
+                         msg="The user was not logged out")

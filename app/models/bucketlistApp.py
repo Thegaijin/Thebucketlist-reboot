@@ -44,4 +44,15 @@ class BucketlistApp(object):
         Method to logout a currently logged in user
         :param username:
         '''
-        pass
+        if username in self.loggedin:
+            self.loggedin.remove(username)
+            return self.loggedin
+        return "The user was not logged out"
+
+
+# TODO: testing signup and login functionality
+
+testuser = BucketlistApp()
+testuser.signup('Thegaijin', '1234', '1234')
+testuser.login('Thegaijin', '1234')
+print(testuser.logout('Thegaijin'))
