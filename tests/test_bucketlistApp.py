@@ -27,9 +27,8 @@ class BucketlistAppTestCase(unittest.TestCase):
         Test to check if users are added to users dictionary
         '''
         person1 = self.current.signup('Thegaijin', 'pswd', 'pswd')
-        person2 = self.current.signup('devGenie', '12sd4', '12sd4')
-        user_count = len(self.user_names)
-        self.assertEqual(user_count, 2)
+        self.assertIn('Thegaijin', self.user_names,
+                      msg='The user was not able to sign up')
 
     def test_user_confirmation_password(self):
         '''
@@ -37,14 +36,17 @@ class BucketlistAppTestCase(unittest.TestCase):
         when signing up
         '''
         self.current.signup('username', 'pswd', 'pswd')
-        self.assertEqual('pswd', 'pswd')
+        self.assertEqual(
+            'pswd', 'pswd', msg="The password and confirmation password don't match")
 
     def test_if_user_already_exists(self):
         '''
         Test if the username enter at signup already exists in the system
         '''
         self.current.signup('username', 'pswd', 'pswd')
-        self.assertNotIn('username', self.user_names)
+        self.current.signup('username', 'pswd', 'pswd')
+        self.assertNotIn('username2', self.user_names,
+                         msg='A user by that name already exists')
 
     def test_if_user_can_login(self):
         '''

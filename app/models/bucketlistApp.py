@@ -16,7 +16,14 @@ class BucketlistApp(object):
         :param password:
         :param confirmation password:
         '''
-        pass
+        if username not in self.user_names:
+            if password == confirmation_password:
+                self.user_names.append(username)
+                self.users[username] = password
+                return self.user_names
+            return "The password and confirmation password \
+                    don't match"
+        return "A user by that name already exists"
 
     def login(self, username, password):
         '''
