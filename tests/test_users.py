@@ -26,13 +26,20 @@ class UserTestCase(unittest.TestCase):
         self.assertEqual(list_count, 2)
 
     def test_if_user_list_already_exists(self):
-        new_list = self.user.create_list('username', 'listname', 'details')
+        ''' 
+        Test if user's list dictionary has already been created
+        '''
+        new_list = self.user.create_list(
+            'username', 'listname', 'details')
         self.assertNotIn('username', self.user_lists)
 
-    def test_if_list_already_in_user_list(self):
+    def test_if_list_in_user_list(self):
+        '''
+        Test if a list has already been added to the users lists
+        '''
         new_list = self.user.create_list('username', 'listname', 'details')
-        # TODO: Finish the test(has to check the values of the dictionary which
-        # is a list)
+        bucketlist = self.user_lists['username']
+        self.assertIn('listname', bucketlist)
 
     def test_view_list_method(self):
         '''
@@ -41,18 +48,25 @@ class UserTestCase(unittest.TestCase):
         viewed = self.user.view_list('username', 'listname')
         self.assertTrue(viewed)
 
-    def test_if_list_is_updated_on_update(self):
+    def test_if_list_updated_on_update(self):
         '''
         Test if a list is updated
         '''
         self.user.update_list('username', 'listname', 'details')
-        # TODO: pick list object from user's list and save it new information
+        # TODO: pick list object from user's list and save the
+        # new information
 
     def test_list_deletion(self):
+        '''
+        Test if list is deleted from users lists
+        '''
         self.user.delete_list('úsername', 'listname')
         self.assertNotIn('listname', self.user_lists['username'])
 
     def test_item_deletion(self):
+        '''
+        Test if item is deleted from users list items
+        '''
         self.user.delete_item('username', 'listname', 'item')
         bucketlist = self.user_lists['username']
         self.assertNotIn('item', bucketlist.items)
