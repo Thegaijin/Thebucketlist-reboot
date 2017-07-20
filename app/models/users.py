@@ -7,6 +7,7 @@ class User(object):
     def __init__(self, username):
         self.username = username
         self.bucketlists = {}
+        self.usersbuckets = []
 
     def create_list(self, username, listname, details):
         '''
@@ -17,16 +18,32 @@ class User(object):
         '''
         pass
 
-    def view_list(self):
+    def view_list(self, username, listname):
+        '''
+        method to view the properties of a list
+        :param username:
+        :param listname:
+        '''
         pass
 
-    def update_list(self):
+    def update_list(self, username, listname='', details=''):
+        '''
+        method to update the properties of a list
+        :param username:
+        :param listname:
+        :param details:
+        '''
         pass
 
-    def delete_list(self):
+    def delete_list(self, username, listname):
+        '''
+        Method to delete a list
+        :param username:
+        :param listname:
+        '''
         pass
 
-    def add_item(self):
+    def add_item(self, username, listname, item):
         '''
         method to add items to a list
         :param username:
@@ -35,11 +52,29 @@ class User(object):
         '''
         pass
 
-    def view_item(self):
+    def view_item(self, username, listname, item):
+        '''
+        method to view the properties of an item
+        :param username:
+        :param listname:
+        :param item:
+        '''
         pass
 
-    def update_item(self):
+    def update_item(self, username, listname, item):
+        '''
+        method to update the properties of an item
+        :param username:
+        :param listname:
+        :param item:
+        '''
         pass
 
-    def delete_item(self):
+    def delete_item(self, username, listname, item):
+        '''
+        method to delete an item
+        :param username:
+        :param listname:
+        :param item:
+        '''
         pass

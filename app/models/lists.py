@@ -4,6 +4,7 @@ class Lists(object):
     the properties of a list 
     '''
 
-    def __init__(self):
+    def __init__(self, listname, details):
         self.items = []
-        pass
+        self.listname = listname
+        self.details = details

@@ -11,7 +11,7 @@ class UserTestCase(unittest.TestCase):
 
     def setUp(self):
         self.user = User('username')
-        self.new_list = Lists()
+
         self.user_lists = self.user.bucketlists
         self.buckets = self.user.usersbuckets
 
@@ -60,7 +60,7 @@ class UserTestCase(unittest.TestCase):
         '''
         Test if list is deleted from users lists
         '''
-        self.user.delete_list('úsername', 'listname')
+        self.user.delete_list('username', 'listname')
         self.assertNotIn('listname', self.user_lists['username'])
 
     def test_item_deletion(self):
