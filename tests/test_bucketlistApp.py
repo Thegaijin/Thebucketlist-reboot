@@ -59,7 +59,7 @@ class BucketlistAppTestCase(unittest.TestCase):
 
     def test_if_user_was_logged_out(self):
         '''
-        Test if username is removed from loggedin list on logout
+        Test if a username is removed from loggedin list on logout
         '''
         self.current.logout('username')
         self.assertNotIn('username', self.loggedin)
