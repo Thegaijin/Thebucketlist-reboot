@@ -23,7 +23,7 @@ class BucketlistApp(object):
                 return self.user_names
             return "The password and confirmation password \
                     don't match"
-        return "A user by that name already exists"
+        return "A user by that name already exist"
 
     def login(self, username, password):
         '''
