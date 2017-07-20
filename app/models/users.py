@@ -27,6 +27,12 @@ class User(object):
         pass
 
     def add_item(self):
+        '''
+        method to add items to a list
+        :param username:
+        :param listname:
+        :param item:
+        '''
         pass
 
     def view_item(self):

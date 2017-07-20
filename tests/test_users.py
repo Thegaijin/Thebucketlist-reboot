@@ -46,5 +46,13 @@ class UserTestCase(unittest.TestCase):
         Test if a list is updated
         '''
         self.user.update_list('username', 'listname', 'details')
+        # TODO: pick list object from user's list and save it new information
 
-        self.assertEqual()
+    def test_list_deletion(self):
+        self.user.delete_list('úsername', 'listname')
+        self.assertNotIn('listname', self.user_lists['username'])
+
+    def test_item_deletion(self):
+        self.user.delete_item('username', 'listname', 'item')
+        bucketlist = self.user_lists['username']
+        self.assertNotIn('item', bucketlist.items)

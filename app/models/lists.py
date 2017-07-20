@@ -5,4 +5,5 @@ class Lists(object):
     '''
 
     def __init__(self):
+        self.items = []
         pass
