@@ -29,15 +29,14 @@ class UserTestCase(unittest.TestCase):
         ''' 
         Test if user's list dictionary has already been created
         '''
-        new_list = self.user.create_list(
-            'username', 'listname', 'details')
+        self.user.create_list('username', 'listname', 'details')
         self.assertNotIn('username', self.user_lists)
 
     def test_if_list_in_user_list(self):
         '''
         Test if a list has already been added to the users lists
         '''
-        new_list = self.user.create_list('username', 'listname', 'details')
+        self.user.create_list('username', 'listname', 'details')
         bucketlist = self.user_lists['username']
         self.assertIn('listname', bucketlist)
 
@@ -52,9 +51,10 @@ class UserTestCase(unittest.TestCase):
         '''
         Test if a list is updated
         '''
-        self.user.update_list('username', 'listname', 'details')
-        # TODO: pick list object from user's list and save the
-        # new information
+        newlist = self.user.update_list('username', 'listname', 'details')
+        new_list = newlist['username']
+        self.assertEqual(new_list.listname, 'listname')
+        self.assertEqual(new_list.details, 'details')
 
     def test_list_deletion(self):
         '''
