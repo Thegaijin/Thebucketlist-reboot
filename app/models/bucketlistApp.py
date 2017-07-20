@@ -1,6 +1,6 @@
 class BucketlistApp(object):
     '''
-    BucketlistApp class handles user registration, 
+    BucketlistApp class handles user registration,
     sign in and sign out
     '''
 
@@ -14,7 +14,7 @@ class BucketlistApp(object):
         method to save users on sign up
         :param username:
         :param password:
-        :param confirmation password:
+        :param confirmation_password:
         '''
         if username not in self.user_names:
             if password == confirmation_password:
@@ -23,7 +23,7 @@ class BucketlistApp(object):
                 return self.user_names
             return "The password and confirmation password \
                     don't match"
-        return "A user by that name already exist"
+        return "A user by that name already exists"
 
     def login(self, username, password):
         '''
@@ -31,7 +31,13 @@ class BucketlistApp(object):
         :param username:
         :param password:
         '''
-        pass
+        if username in self.users:
+            if password == self.users[username]:
+                self.loggedin.append(username)
+                return self.users
+            return "The username and password combination \
+                     does not exist"
+        return "The username does not exist, please signup"
 
     def logout(self, username):
         '''
