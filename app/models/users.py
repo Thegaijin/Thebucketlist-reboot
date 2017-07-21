@@ -111,6 +111,7 @@ class User(object):
         :param username:
         :param listname:
         :param item:
+        :param item_edit:
         '''
         if username in self.bucketlists:
             lists = self.bucketlists.get(username)
