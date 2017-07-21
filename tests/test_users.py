@@ -63,6 +63,12 @@ class UserTestCase(unittest.TestCase):
         newlists = self.user.delete_list('username', 'listname')
         self.assertNotIn('listname', newlists)
 
+    def test_add_item_to_list(self):
+        self.user.create_list('username', 'listname', 'details')
+        added_item = self.user.add_item('username', 'listname', 'item')
+        print(added_item)
+        self.assertIn('item', added_item)
+
     def test_item_deletion(self):
         '''
         Test if item is deleted from users list items
