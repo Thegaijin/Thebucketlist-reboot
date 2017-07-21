@@ -80,7 +80,14 @@ class User(object):
         :param listname:
         :param item:
         '''
-        pass
+        if username in self.bucketlists:
+            lists = self.bucketlists.get(username)
+            if listname in lists:
+                list_to_update = lists[listname]
+                list_to_update.items.append(item)
+                return list_to_update.items
+            return 'The listname is not in the users lists'
+        return 'The user has no lists at the moment'
 
     def view_item(self, username, listname, item):
         '''
@@ -89,16 +96,33 @@ class User(object):
         :param listname:
         :param item:
         '''
-        pass
+        if username in self.bucketlists:
+            lists = self.bucketlists.get(username)
+            if listname in lists:
+                item_list = lists[listname].items
+                if item in item_list:
+                    return True
+            return 'The listname is not in the users lists'
+        return 'The user has no lists at the moment'
 
-    def update_item(self, username, listname, item):
+    def update_item(self, username, listname, item, item_edit):
         '''
         method to update the properties of an item
         :param username:
         :param listname:
         :param item:
         '''
-        pass
+        if username in self.bucketlists:
+            lists = self.bucketlists.get(username)
+            if listname in lists:
+                item_list = lists[listname].items
+                item_index = item_list.index(item)
+                item_list.remove(item)
+                item_list.insert(item_index, item_edit)
+                return item_list
+                # FIXME: Incomplete functionality
+            return 'The listname is not in the users lists'
+        return 'The user has no lists at the moment'
 
     def delete_item(self, username, listname, item):
         '''
@@ -107,11 +131,19 @@ class User(object):
         :param listname:
         :param item:
         '''
-        pass
+        if username in self.bucketlists:
+            lists = self.bucketlists.get(username)
+            if listname in lists:
+                item_list = lists[listname].items
+                item_list.remove(item)
+                return item_list
+            return 'The listname is not in the users lists'
+        return 'The user has no lists at the moment'
 
 
 # TODO: Testing functionality
 new = User('Thegaijin')
 print(new.create_list('Thegaijin', 'Travel', 'Places to go'))
-print(new.create_list('Thegaijin', 'School', 'Qualifications'))
-print(new.delete_list('Thegaijin', 'Travel'))
+print(new.add_item('Thegaijin', 'Travel', 'Mt Kenya'))
+print(new.add_item('Thegaijin', 'Travel', 'Tsavo'))
+print(new.update_item('Thegaijin', 'Travel', 'Tsavo', 'Jinja'))
