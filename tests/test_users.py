@@ -35,7 +35,7 @@ class UserTestCase(unittest.TestCase):
         self.user.create_list('username', 'listname', 'details')
         bucketlist = self.user_lists['username']
         self.assertIn('listname', bucketlist,
-                      msg='A list by that already exists')
+                      msg='A list by that name already exists')
 
     def test_view_list_method(self):
         '''
@@ -48,22 +48,24 @@ class UserTestCase(unittest.TestCase):
         '''
         Test if a list is updated
         '''
-        newlist = self.user.update_list('username', 'listname', 'details')
-        new_list = newlist['username']
-        self.assertEqual(new_list.listname, 'listname')
-        self.assertEqual(new_list.details, 'details')
+        self.user.create_list('username', 'listname', 'details')
+        updatedlist = self.user.update_list(
+            'username', 'listname', 'newdetails')
+
+        ''' self.assertEqual(updatedlist.listname, 'listname') '''
+        self.assertEqual(updatedlist.details, 'newdetails',
+                         msg='The details were not updated')
 
     def test_list_deletion(self):
         '''
         Test if list is deleted from users lists
         '''
-        self.user.delete_list('username', 'listname')
-        self.assertNotIn('listname', self.user_lists['username'])
+        newlists = self.user.delete_list('username', 'listname')
+        self.assertNotIn('listname', newlists)
 
     def test_item_deletion(self):
         '''
         Test if item is deleted from users list items
         '''
-        self.user.delete_item('username', 'listname', 'item')
-        bucketlist = self.user_lists['username']
+        bucketlist = self.user.delete_item('username', 'listname', 'item')
         self.assertNotIn('item', bucketlist.items)
