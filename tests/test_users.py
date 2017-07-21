@@ -64,14 +64,34 @@ class UserTestCase(unittest.TestCase):
         self.assertNotIn('listname', newlists)
 
     def test_add_item_to_list(self):
+        '''
+        Test if an item is added to a list
+        '''
         self.user.create_list('username', 'listname', 'details')
         added_item = self.user.add_item('username', 'listname', 'item')
         print(added_item)
         self.assertIn('item', added_item)
 
+    def test_view_item_in_list(self):
+        '''
+        Test if item is displayed as long as it exists
+        '''
+        viewed = self.user.view_item('username', 'listname', 'item')
+        self.assertTrue(viewed)
+
+    def test_update_item_in_list(self):
+        '''
+        Test if an item is updated
+        '''
+        self.user.create_list('username', 'listname', 'details')
+        added_item = self.user.add_item('username', 'listname', 'item')
+        updated = self.user.update_item(
+            'username', 'listname', 'item', 'newitem')
+        self.assertIn('newitem', updated)
+
     def test_item_deletion(self):
         '''
         Test if item is deleted from users list items
         '''
-        bucketlist = self.user.delete_item('username', 'listname', 'item')
-        self.assertNotIn('item', bucketlist.items)
+        item_list = self.user.delete_item('username', 'listname', 'item')
+        self.assertNotIn('item', item_list, msg='The item was not deleted')
