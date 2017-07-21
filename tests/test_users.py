@@ -24,18 +24,9 @@ class UserTestCase(unittest.TestCase):
         '''
         Test if lists are added to the lists dictionary
         '''
-        list1 = self.user.create_list('username', 'listname1', 'details1')
-        list2 = self.user.create_list('username', 'listname2', 'details2')
-        self.assertIn('username', self.user_lists)
-        list_count = len(self.user_lists['username'])
-        self.assertEqual(list_count, 2)
-
-    def test_if_user_list_already_exists(self):
-        ''' 
-        Test if user's list dictionary has already been created
-        '''
         self.user.create_list('username', 'listname', 'details')
-        self.assertNotIn('username', self.user_lists)
+        self.assertIn('listname', self.user_lists['username'],
+                      msg='The list was not created')
 
     def test_if_list_in_user_list(self):
         '''
@@ -43,7 +34,8 @@ class UserTestCase(unittest.TestCase):
         '''
         self.user.create_list('username', 'listname', 'details')
         bucketlist = self.user_lists['username']
-        self.assertIn('listname', bucketlist)
+        self.assertIn('listname', bucketlist,
+                      msg='A list by that already exists')
 
     def test_view_list_method(self):
         '''

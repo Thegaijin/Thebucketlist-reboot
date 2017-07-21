@@ -1,3 +1,6 @@
+from .lists import Lists
+
+
 class User(object):
     '''
     The User clas is used to create, edit, update and delete bucketlists.
@@ -7,7 +10,6 @@ class User(object):
     def __init__(self, username):
         self.username = username
         self.bucketlists = {}
-        self.usersbuckets = []
 
     def create_list(self, username, listname, details):
         '''
@@ -16,7 +18,14 @@ class User(object):
         :param listame:
         :param details:
         '''
-        pass
+        user_lists = {}
+        if username not in self.bucketlists:
+            self.bucketlists[username] = user_lists
+            if listname not in self.bucketlists[username]:
+                new_list = Lists(listname, details)
+                user_lists[listname] = new_list
+                return self.bucketlists
+            return 'A list by that already exists'
 
     def view_list(self, username, listname):
         '''
