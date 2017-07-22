@@ -1,13 +1,23 @@
-from lists import Lists
+from .lists import Lists
 
-
-# TODO: Create a decorator to eliminate the repetitive code.
 
 def checker(func):
+    """Decorator function that takes in a function 
+
+    Keyword arguments:
+    func -- function to be decorated
+    """
+
     def view_list(self, *args):
+        '''Function checking if username and list in users lists exist
+
+        Keyword arguments:
+        self
+        *args -- arbtrary number of arguments depending on function
+        '''
         if args[0] not in self.bucketlists:
             return "The user has no lists at the moment"
-        # lists = self.bucketlists.get(args[0])
+
         if args[1] not in self.bucketlists.get(args[0]):
             return False
         return func(self, *args)
@@ -26,9 +36,11 @@ class User(object):
 
     def create_list(self, username, listname, details):
         """Method to create lists
-        :param username:
-        :param listame:
-        :param details:
+
+        Keyword Arguments:
+        username -- The currently logged in user's name
+        listame -- The name of the bucketlist to create
+        details -- What the bucketlist is about
         """
 
         if username not in self.bucketlists:
@@ -40,8 +52,6 @@ class User(object):
             return self.bucketlists
         return "A list by that name already exists"
 
-    # FIXME: attempt to create decorator
-
     @checker
     def view_list(self, username, listname):
         the_lists = self.bucketlists[username]
@@ -51,20 +61,24 @@ class User(object):
     @checker
     def update_list(self, username, listname, details=""):
         """method to update the properties of a list
-        :param username:
-        :param listname:
-        :param details:
+
+        Keyword Arguments:
+        username -- The currently logged in user's name
+        listame -- The name of the bucketlist to update
+        details -- The new property of the bucketlist
         """
         the_lists = self.bucketlists[username]
         updatedlist = Lists(listname, details)
         the_lists[listname] = updatedlist
-        return updatedlist.details
+        return updatedlist
 
     @checker
     def delete_list(self, username, listname):
         """Method to delete a list
-        :param username:
-        :param listname:
+
+        Keyword Arguments:
+        username -- The currently logged in user's name
+        listame -- The name of the bucketlist to delete
         """
         the_lists = self.bucketlists[username]
         del(the_lists[listname])
@@ -73,9 +87,11 @@ class User(object):
     @checker
     def add_item(self, username, listname, item):
         """method to add items to a list
-        :param username:
-        :param listname:
-        :param item:
+
+        Keyword Arguments:
+        username -- The currently logged in user's name
+        listame -- The name of the list to update
+        item -- name of the item to add to the bucketlist
         """
         the_lists = self.bucketlists[username]
         list_to_update = the_lists[listname]
@@ -84,9 +100,11 @@ class User(object):
 
     def view_item(self, username, listname, item):
         """method to view the properties of an item
-        :param username:
-        :param listname:
-        :param item:
+
+        Keyword Arguments:
+        username -- The currently logged in user's name
+        listame -- The name of the list to update
+        item -- name of the item in the bucketlist to view
         """
         the_lists = self.bucketlists[username]
         item_list = the_lists[listname].items
@@ -96,10 +114,12 @@ class User(object):
     @checker
     def update_item(self, username, listname, item, item_edit):
         """method to update the properties of an item
-        :param username:
-        :param listname:
-        :param item:
-        :param item_edit:
+
+        Keyword Arguments:
+        username -- The currently logged in user's name
+        listame -- The name of the list to update
+        item -- name of the item to edit
+        item_edit -- the edit to the item
         """
         the_lists = self.bucketlists[username]
         item_list = the_lists[listname].items
@@ -112,9 +132,11 @@ class User(object):
     @checker
     def delete_item(self, username, listname, item):
         """method to delete an item
-        :param username:
-        :param listname:
-        :param item:
+
+        Keyword Arguments:
+        username -- The currently logged in user's name
+        listame -- The name of the list to update
+        item -- name of the item to delete from the bucketlist
         """
         the_lists = self.bucketlists[username]
         item_list = the_lists[listname].items

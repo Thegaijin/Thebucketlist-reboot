@@ -10,9 +10,11 @@ class BucketlistApp(object):
 
     def signup(self, username, password, confirmation_password):
         """method to save users on sign up
-        :param username:
-        :param password:
-        :param confirmation_password:
+
+        Keyword Arguments:
+        username -- The name the user would like to use
+        password -- The password the user would like to use
+        confirmation_password -- Password to compare with above
         """
         if username not in self.user_names:
             if password == confirmation_password:
@@ -20,13 +22,15 @@ class BucketlistApp(object):
                 self.users[username] = password
                 return self.user_names
             return "The password and confirmation password \
-                    don"t match"
+                    don't match"
         return "A user by that name already exists"
 
     def login(self, username, password):
         """Method to login existing users
-        :param username:
-        :param password:
+
+        Keyword Arguments:
+        username -- The name the user signed up with
+        password -- The password the user signed up with
         """
         if username in self.users:
             if password == self.users[username]:
@@ -38,7 +42,9 @@ class BucketlistApp(object):
 
     def logout(self, username):
         """Method to logout a currently logged in user
-        :param username:
+
+        Keyword Arguments:
+        username -- The name the user currently logged in
         """
         if username in self.loggedin:
             self.loggedin.remove(username)
