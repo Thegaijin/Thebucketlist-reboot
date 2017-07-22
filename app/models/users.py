@@ -1,4 +1,17 @@
-from .lists import Lists
+from lists import Lists
+
+
+# TODO: Create a decorator to eliminate the repetitive code.
+
+def checker(func):
+    def view_list(self, *args):
+        if args[0] not in self.bucketlists:
+            return "The user has no lists at the moment"
+        # lists = self.bucketlists.get(args[0])
+        if args[1] not in self.bucketlists.get(args[0]):
+            return False
+        return func(self, *args)
+    return view_list
 
 
 class User(object):
@@ -27,61 +40,47 @@ class User(object):
             return self.bucketlists
         return "A list by that name already exists"
 
-    def view_list(self, username, listname):
-        """method to view the properties of a list
-        :param username:
-        :param listname:
-        """
-        if username in self.bucketlists:
-            lists = self.bucketlists.get(username)
-            if listname in lists:
-                the_list = lists[listname]
-                return True
-            return False
-        return "The user has no lists at the moment"
+    # FIXME: attempt to create decorator
 
+    @checker
+    def view_list(self, username, listname):
+        the_lists = self.bucketlists[username]
+        the_list = the_lists[listname]
+        return True
+
+    @checker
     def update_list(self, username, listname, details=""):
         """method to update the properties of a list
         :param username:
         :param listname:
         :param details:
         """
-        if username in self.bucketlists:
-            lists = self.bucketlists.get(username)
-            if listname in lists:
-                updatedlist = Lists(listname, details)
-                lists[listname] = updatedlist
-                return updatedlist
-            return False
-        return "The user has no lists at the moment"
+        the_lists = self.bucketlists[username]
+        updatedlist = Lists(listname, details)
+        the_lists[listname] = updatedlist
+        return updatedlist.details
 
+    @checker
     def delete_list(self, username, listname):
         """Method to delete a list
         :param username:
         :param listname:
         """
-        if username in self.bucketlists:
-            lists = self.bucketlists.get(username)
-            if listname in lists:
-                del(lists[listname])
-                return lists
-            return "The listname is not in the users lists"
-        return "The user has no lists at the moment"
+        the_lists = self.bucketlists[username]
+        del(the_lists[listname])
+        return the_lists
 
+    @checker
     def add_item(self, username, listname, item):
         """method to add items to a list
         :param username:
         :param listname:
         :param item:
         """
-        if username in self.bucketlists:
-            lists = self.bucketlists.get(username)
-            if listname in lists:
-                list_to_update = lists[listname]
-                list_to_update.items.append(item)
-                return list_to_update.items
-            return "The listname is not in the users lists"
-        return "The user has no lists at the moment"
+        the_lists = self.bucketlists[username]
+        list_to_update = the_lists[listname]
+        list_to_update.items.append(item)
+        return list_to_update.items
 
     def view_item(self, username, listname, item):
         """method to view the properties of an item
@@ -89,15 +88,12 @@ class User(object):
         :param listname:
         :param item:
         """
-        if username in self.bucketlists:
-            lists = self.bucketlists.get(username)
-            if listname in lists:
-                item_list = lists[listname].items
-                if item in item_list:
-                    return True
-            return "The listname is not in the users lists"
-        return "The user has no lists at the moment"
+        the_lists = self.bucketlists[username]
+        item_list = the_lists[listname].items
+        if item in item_list:
+            return True
 
+    @checker
     def update_item(self, username, listname, item, item_edit):
         """method to update the properties of an item
         :param username:
@@ -105,32 +101,25 @@ class User(object):
         :param item:
         :param item_edit:
         """
-        if username in self.bucketlists:
-            lists = self.bucketlists.get(username)
-            if listname in lists:
-                item_list = lists[listname].items
-                item_index = item_list.index(item)
-                item_list.remove(item)
-                item_list.insert(item_index, item_edit)
-                return item_list
-                # FIXME: Incomplete functionality
-            return "The listname is not in the users lists"
-        return "The user has no lists at the moment"
+        the_lists = self.bucketlists[username]
+        item_list = the_lists[listname].items
+        item_index = item_list.index(item)
+        item_list.remove(item)
+        item_list.insert(item_index, item_edit)
+        return item_list
+        # FIXME: Incomplete functionality
 
+    @checker
     def delete_item(self, username, listname, item):
         """method to delete an item
         :param username:
         :param listname:
         :param item:
         """
-        if username in self.bucketlists:
-            lists = self.bucketlists.get(username)
-            if listname in lists:
-                item_list = lists[listname].items
-                item_list.remove(item)
-                return item_list
-            return "The listname is not in the users lists"
-        return "The user has no lists at the moment"
+        the_lists = self.bucketlists[username]
+        item_list = the_lists[listname].items
+        item_list.remove(item)
+        return item_list
 
 
 # TODO: Testing functionality
@@ -138,4 +127,6 @@ new = User("Thegaijin")
 print(new.create_list("Thegaijin", "Travel", "Places to go"))
 print(new.add_item("Thegaijin", "Travel", "Mt Kenya"))
 print(new.add_item("Thegaijin", "Travel", "Tsavo"))
+print(new.add_item("Thegaijin", "Travel", "Gulu"))
 print(new.update_item("Thegaijin", "Travel", "Tsavo", "Jinja"))
+print(new.view_list("Thegaijin", "Travel"))
