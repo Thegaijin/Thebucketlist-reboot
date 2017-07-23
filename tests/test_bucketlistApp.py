@@ -11,9 +11,8 @@ class BucketlistAppTestCase(unittest.TestCase):
     def setUp(self):
         self.current = BucketlistApp()
         self.user_names = self.current.user_names
-        self.test_dict = self.current.users
         self.loggedin = self.current.loggedin
-        self.users = self.current.users
+        self.usercredentials = self.current.usercredentials
 
     def test_bucketlistApp_instance(self):
         """Test if instance of bucketlistApp class is
@@ -27,20 +26,21 @@ class BucketlistAppTestCase(unittest.TestCase):
         """Test if the username enter at signup already exists
         in the system
         """
-        self.current.signup("newname", "pswd", "pswd")
+        self.current.signup("newname", "pswd")
         self.assertNotIn("newname", self.user_names,
                          msg="A user by that name already exists")
 
-    def test_user_confirmation_password(self):
+    # Test is now redundant. checking done in forms
+    ''' def test_user_confirmation_password(self):
         """Test to check if user entered correct confirmation
         password when signing up"""
         self.current.signup("username", "pswd", "pswd")
         self.assertEqual(
-            "pswd", "pswd", msg="The password and confirmation password don't match")
+            "pswd", "pswd", msg="The password and confirmation password don't match") '''
 
     def test_if_user_can_sign_up(self):
         """Test to check if users are added to users dictionary"""
-        person1 = self.current.signup("Thegaijin", "pswd", "pswd")
+        self.current.signup("Thegaijin", "pswd")
         self.assertIn("Thegaijin", self.user_names,
                       msg="The user was not able to sign up")
 
@@ -48,11 +48,9 @@ class BucketlistAppTestCase(unittest.TestCase):
         """Test if the username and password combination entered at login
         exists in the users dictionary
         """
-        self.current.signup("username", "pswd", "pswd")
+        self.current.signup("username", "pswd")
         self.current.login("username", "pswd")
-        """ password = self.test_dict.get("username")
-        self.assertEqual(password, "password") """
-        self.assertEqual("pswd", self.users["username"],
+        self.assertEqual("pswd", self.usercredentials["username"],
                          msg="The username and password combination does not exist")
 
     def test_if_user_was_logged_out(self):
