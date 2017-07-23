@@ -1,0 +1,160 @@
+/*Clear any preset browser css settings*/
+
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+img,
+form,
+fieldset,
+blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.nav {
+    background: #76b852;
+    height: inherit;
+}
+
+.nav a {
+    color: white;
+    /* color: #5a5a5a; */
+    font-size: 11px;
+    font-weight: bold;
+    padding: 14px 10px;
+    text-transform: uppercase;
+}
+
+.nav li {
+    display: inline;
+}
+
+.pull-left li {
+    color: white;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.btn {
+    background: white;
+    font: #76b852;
+    line-height: 1.02857143;
+    margin: 4px;
+    border-color: #76b852;
+}
+
+.jumbotron {
+    background-image: url('../app/static/images/fade.jpg');
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.jumbotron .container {
+    position: relative;
+    top: 100px;
+}
+
+.jumbotron h1 {
+    color: #76b852;
+    font-size: 47px;
+    font-family: 'Shift', sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #76b852;
+}
+
+.jumbotron p {
+    font-size: 20px;
+    color: #76b852;
+}
+
+
+/* login and signup page */
+
+.login-container {
+    width: 360px;
+    padding: 1% 0 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    /* max-width: 1000px; */
+    margin: 0 auto 0;
+    padding: 45px;
+    text-align: center;
+}
+
+.form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form button:hover,
+.form button:active,
+.form button:focus {
+    background: #43a047;
+}
+
+.form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.form .message a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.input-group {
+    margin-left: 70px;
+}
+
+#login {
+    color: white;
+    background: #4caf50;
+}
+
+
+/* Lists and items pages */
+
+.list-container {
+    width: 1000px;
+    margin: auto;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#lists-header {
+    text-align: center;
+    font-family: Bellefair;
+}
+
+.list-buttons,
+.close-lists {
+    padding: 5px 0 0 0;
+    text-align: center;
+}

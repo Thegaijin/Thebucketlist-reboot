@@ -1,0 +1,35 @@
+{% extends "base.html" %}{% block content %}
+<div class="nav">
+    <div class="container">
+        <ul class="pull-left">
+            <li>The bucketlist</li>
+        </ul>
+        <ul class="pull-right">
+            <li>
+                <button type="submit" class="btn">
+                        <a href="/signup" class="btn_color"> Sign Up</a>
+                    </button>
+            </li>
+
+            <li>
+                <button type="submit" class="btn">
+                        <a href="/login" class="btn_color"> Log in</a>
+                    </button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="jumbotron ">
+    {% if active_user %}
+    <h1>Welcome, {{ active_user.username }}</h1>
+    {% else %}
+    <h1></h1>
+    {% endif %}
+    <div class="container ">
+        <h1>Welcome to The Bucketlist</h1>
+        <p>We hold your dreams while you make them a reality</p>
+        <!-- <a href="# ">Learn More</a> -->
+    </div>
+</div>
+{% endblock %}
