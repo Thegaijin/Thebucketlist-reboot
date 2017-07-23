@@ -8,7 +8,7 @@ class BucketlistApp(object):
 
     def __init__(self):
         self.user_names = []
-        self.users = {}
+        self.usercredentials = {}
         self.loggedin = []
 
     def signup(self, username, password):
@@ -20,7 +20,7 @@ class BucketlistApp(object):
         confirmation_password -- Password to compare with above
         """
         self.user_names.append(username)
-        self.users[username] = password
+        self.usercredentials[username] = password
         return self.user_names
 
     def login(self, username, password):
@@ -30,10 +30,10 @@ class BucketlistApp(object):
         username -- The name the user signed up with
         password -- The password the user signed up with
         """
-        if username in self.users:
-            if password == self.users[username]:
+        if username in self.usercredentials:
+            if password == self.usercredentials[username]:
                 self.loggedin.append(username)
-                return self.users
+                return self.usercredentials
             return "The username and password combination \
                      does not exist"
         return "The username does not exist, please signup"
