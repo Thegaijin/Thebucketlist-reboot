@@ -1,5 +1,6 @@
 # /app/models/bucketlistApp.py
 
+
 class BucketlistApp(object):
     """BucketlistApp class handles user registration,
     sign in and sign out
@@ -10,7 +11,7 @@ class BucketlistApp(object):
         self.users = {}
         self.loggedin = []
 
-    def signup(self, username, password, confirmation_password):
+    def signup(self, username, password):
         """method to save users on sign up
 
         Keyword Arguments:
@@ -18,14 +19,9 @@ class BucketlistApp(object):
         password -- The password the user would like to use
         confirmation_password -- Password to compare with above
         """
-        if username not in self.user_names:
-            if password == confirmation_password:
-                self.user_names.append(username)
-                self.users[username] = password
-                return self.user_names
-            return "The password and confirmation password \
-                    don't match"
-        return "A user by that name already exists"
+        self.user_names.append(username)
+        self.users[username] = password
+        return self.user_names
 
     def login(self, username, password):
         """Method to login existing users
