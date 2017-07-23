@@ -1,3 +1,5 @@
+# /app/models/bucketlistApp.py
+
 class BucketlistApp(object):
     """BucketlistApp class handles user registration,
     sign in and sign out
@@ -52,9 +54,8 @@ class BucketlistApp(object):
         return "The user was not logged out"
 
 
-# TODO: testing signup and login functionality
-
-testuser = BucketlistApp()
+# CALLING THE FUNCTIONS: testing signup and login functionality
+''' testuser = BucketlistApp()
 testuser.signup("Thegaijin", "1234", "1234")
 testuser.login("Thegaijin", "1234")
-print(testuser.logout("Thegaijin"))
+print(testuser.logout("Thegaijin")) '''

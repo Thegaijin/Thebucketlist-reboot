@@ -1,3 +1,5 @@
+# /app/models/users.py
+
 from .lists import Lists
 
 
@@ -144,11 +146,11 @@ class User(object):
         return item_list
 
 
-# TODO: Testing functionality
-new = User("Thegaijin")
+# CALLING THE FUNCTIONS: Testing functionality
+''' new = User("Thegaijin")
 print(new.create_list("Thegaijin", "Travel", "Places to go"))
 print(new.add_item("Thegaijin", "Travel", "Mt Kenya"))
 print(new.add_item("Thegaijin", "Travel", "Tsavo"))
 print(new.add_item("Thegaijin", "Travel", "Gulu"))
 print(new.update_item("Thegaijin", "Travel", "Tsavo", "Jinja"))
-print(new.view_list("Thegaijin", "Travel"))
+print(new.view_list("Thegaijin", "Travel")) '''
