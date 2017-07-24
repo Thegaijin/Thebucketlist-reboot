@@ -3,8 +3,7 @@ from app.models.bucketlistApp import BucketlistApp
 
 
 class BucketlistAppTestCase(unittest.TestCase):
-    """
-    Testing the functionality of the methods in
+    """Testing the functionality of the methods in
     the BucketlistApp class
     """
 
