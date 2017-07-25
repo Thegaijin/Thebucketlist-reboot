@@ -1,0 +1,43 @@
+<!-- /app/templates/layout.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Bell|Amatic+SC:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/css/bootstrap.min.css') }}">;
+
+    <strong>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/css/style.css') }}"></strong>
+    <title>The Bucketlist</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Bucketlist</h1>
+            <nav>
+                <ul class="menu">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('profile') }}">Lists</a></li>
+                    <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                    <li><a href="{{ url_for('login') }}">Sign In</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container home">
+        {% block content%} {% endblock %}
+    </div>
+    <script src="{{url_for( 'static', filename='styles/js/jquery.min.js' ) }}"></script>
+    <script src="{{url_for( 'static', filename='styles/js/bootstrap.min.js' ) }}"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</body>
+
+</html>
