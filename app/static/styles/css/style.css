@@ -1,3 +1,6 @@
+/* /app/static/styles/style.css */
+
+
 /*Clear any preset browser css settings*/
 
 body,
@@ -21,140 +24,203 @@ fieldset,
 blockquote {
     margin: 0;
     padding: 0;
-    border: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #76b852;
 }
 
-.nav {
-    background: #76b852;
-    height: inherit;
-}
-
-.nav a {
-    color: white;
-    /* color: #5a5a5a; */
-    font-size: 11px;
-    font-weight: bold;
-    padding: 14px 10px;
-    text-transform: uppercase;
-}
-
-.nav li {
-    display: inline;
-}
-
-.pull-left li {
-    color: white;
-    margin-top: 10px;
-    font-size: 20px;
-}
-
-.btn {
-    background: white;
-    font: #76b852;
-    line-height: 1.02857143;
-    margin: 4px;
-    border-color: #76b852;
-}
-
-.jumbotron {
-    background-image: url('../app/static/images/fade.jpg');
+body {
+    background-image: url('/static/img/fade.jpg');
     height: 600px;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
 }
 
-.jumbotron .container {
-    position: relative;
-    top: 100px;
-}
 
-.jumbotron h1 {
-    color: #76b852;
-    font-size: 47px;
-    font-family: 'Shift', sans-serif;
-    font-weight: bold;
-    text-shadow: 2px 2px 2px #76b852;
-}
+/* Create dark green with a white logo */
 
-.jumbotron p {
-    font-size: 20px;
-    color: #76b852;
-}
-
-
-/* login and signup page */
-
-.login-container {
-    width: 360px;
-    padding: 1% 0 0;
-    margin: auto;
-}
-
-.form {
-    position: relative;
-    z-index: 1;
-    background: #ffffff;
-    /* max-width: 1000px; */
-    margin: 0 auto 0;
-    padding: 45px;
-    text-align: center;
-}
-
-.form input {
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
+header {
+    margin-top: -20px;
+    background-color: #76b852;
+    height: 35px;
     width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
+    opacity: .9;
+    margin-bottom: 10px;
 }
 
-.form button:hover,
-.form button:active,
-.form button:focus {
-    background: #43a047;
+header h1.logo {
+    margin: 0;
+    font-size: 1.7em;
+    color: #fff;
+    text-transform: uppercase;
+    float: left;
 }
 
-.form .message {
-    margin: 15px 0 0;
-    color: #b3b3b3;
-    font-size: 12px;
-}
-
-.form .message a {
-    color: #4caf50;
+header h1.logo:hover {
+    color: #fff;
     text-decoration: none;
 }
 
-.input-group {
-    margin-left: 70px;
+
+/* Display navigation links inline */
+
+.menu {
+    float: right;
+    margin-top: 8px;
 }
 
-#login {
+.menu li {
+    display: inline;
+}
+
+.menu li+li {
+    margin-left: 35px;
+}
+
+.menu li a {
     color: white;
-    background: #4caf50;
+    text-decoration: none;
 }
 
 
-/* Lists and items pages */
+/* Center the body content */
 
-.list-container {
-    width: 1000px;
-    margin: auto;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+.container {
+    width: 940px;
+    margin: 0 auto;
 }
 
-#lists-header {
+div.home {
+    padding-top: 80px;
+}
+
+div.jumbo {
+    padding: 10px 0 30px 0;
+    background-color: rgba(18, 216, 18, 0.3);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+h2 {
+    font-size: 3em;
+    margin-top: 40px;
     text-align: center;
-    font-family: Bellefair;
+    letter-spacing: -2px;
+    color: White;
 }
 
-.list-buttons,
-.close-lists {
-    padding: 5px 0 0 0;
+h3 {
+    font-size: 1.7em;
+    font-weight: 100;
+    margin-top: 30px;
     text-align: center;
+    letter-spacing: -1px;
+    color: White;
+}
+
+
+/* rgba(98, 184, 82, 0.3) */
+
+
+/* Contact form */
+
+form {
+    text-align: center;
+}
+
+form label {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    padding: 10px 0;
+}
+
+form input#name,
+form input#email,
+form input#subject {
+    width: 400px;
+    background-color: #fafafa;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    font-size: 1.1em;
+}
+
+form textarea#message {
+    width: 500px;
+    height: 100px;
+    background-color: #fafafa;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 1.1em;
+}
+
+form input#submit {
+    display: block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #d8d8d8;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 430px;
+    color: #000000;
+    background-color: #f4f4f4;
+    background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #e5e5e5));
+    background-image: -webkit-linear-gradient(top, #f4f4f4, #e5e5e5);
+    background-image: -moz-linear-gradient(top, #f4f4f4, #e5e5e5);
+    background-image: -ms-linear-gradient(top, #f4f4f4, #e5e5e5);
+    background-image: -o-linear-gradient(top, #f4f4f4, #e5e5e5);
+    background-image: linear-gradient(top, #f4f4f4, #e5e5e5);
+    filter: progid: DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#f4f4f4, endColorstr=#e5e5e5);
+}
+
+form input#submit:hover {
+    cursor: pointer;
+    border: 1px solid #c1c1c1;
+    background-color: #dbdbdb;
+    background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0%, #dbdbdb), color-stop(100%, #cccccc));
+    background-image: -webkit-linear-gradient(top, #dbdbdb, #cccccc);
+    background-image: -moz-linear-gradient(top, #dbdbdb, #cccccc);
+    background-image: -ms-linear-gradient(top, #dbdbdb, #cccccc);
+    background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
+    background-image: linear-gradient(top, #dbdbdb, #cccccc);
+    filter: progid: DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#dbdbdb, endColorstr=#cccccc);
+}
+
+
+/* Message flashing */
+
+.flash {
+    background-color: #fbb0b0;
+    padding: 10px;
+    width: 400px;
+}
+
+
+/* Signup and login form */
+
+form input#username,
+form input#password,
+form input#confirmpassword {
+    width: 300px;
+    background-color: #fafafa;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    font-size: 1.1em;
+}
+
+form input#password {
+    margin-bottom: 10px;
 }
