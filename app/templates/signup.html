@@ -1,36 +1,26 @@
-{% extends "base.html" %}{% block content %}
-<div class="nav">
+<!-- /app/templates/signup.html -->
+
+{% extends "layout.html" %}{% block content %}
+
+<div class="jumbo">
     <div class="container">
-        <ul class="pull-left">
-            <li>The bucketlist</li>
-        </ul>
-        <ul class="pull-right">
-            <li>
-                <button type="submit" class="btn">
-                        <a href="/login" class="btn_color"> Log in</a>
-                    </button>
-            </li>
-        </ul>
-    </div>
-</div>
+        <h2>Sign up</h2>
 
-<div class="jumbotron">
-    <div class="container">
-        <div class="login-container">
-            <!-- Sign up form -->
-            <div class="form">
-                <form method="POST" action="/signup">
+        {% for message in form.username.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %} {% for message in form.password.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %} {% for message in form.password.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+        <!-- Sign up form -->
+        <form method="POST" action="{{ url_for('signup') }}">
 
-                    <input type="username" name="username" placeholder="Username">
-                    <input type="password" name="password" placeholder="Password">
-                    <input type="password" name="confirm-password" placeholder="Password">
-                    <input type="submit" value="Sign up" id="login">
-                    <p class="message">Already registered? <a href="/login" class="account">Log in</a></p>
-                </form>
+            {{ form.hidden_tag() }} {{ form.username.label }} {{ form.username }} {{ form.password.label }} {{ form.password }} {{ form.confirmpassword.label }} {{ form.confirmpassword }} {{ form.submit }}
+            <p class="message">Already registered? <a href="{{ url_for('login') }}" class="account">Log in</a></p>
+        </form>
 
-            </div>
-            <!-- End of signup form -->
-        </div>
+        <!-- End of signup form -->
     </div>
 </div>
 {% endblock %}
