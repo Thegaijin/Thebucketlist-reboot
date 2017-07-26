@@ -1,5 +1,7 @@
 # /app/models/bucketlistApp.py
 
+from .users import User
+
 
 class BucketlistApp(object):
     """BucketlistApp class handles user registration,
@@ -7,11 +9,11 @@ class BucketlistApp(object):
     """
 
     def __init__(self):
-        self.user_names = []
+        self.users = {}
         self.usercredentials = {}
         self.loggedin = []
 
-    def signup(self, username, password):
+    def signup(self, new_user):
         """method to save users on sign up
 
         Keyword Arguments:
@@ -19,10 +21,11 @@ class BucketlistApp(object):
         password -- The password the user would like to use
         confirmation_password -- Password to compare with above
         """
-        self.user_names.append(username)
-        self.usercredentials[username] = password
-        return self.user_names
+        self.users[new_user.username] = new_user
+        self.usercredentials[new_user.username] = new_user.password
+        return new_user
 
+    # @classmethod
     def login(self, username, password):
         """Method to login existing users
 
@@ -33,7 +36,7 @@ class BucketlistApp(object):
         if username in self.usercredentials:
             if password == self.usercredentials[username]:
                 self.loggedin.append(username)
-                return self.usercredentials
+                return self.users[username]
             return "The username and password combination \
                      does not exist"
         return "The username does not exist, please signup"
@@ -52,6 +55,6 @@ class BucketlistApp(object):
 
 # CALLING THE FUNCTIONS: testing signup and login functionality
 ''' testuser = BucketlistApp()
-testuser.signup("Thegaijin", "1234", "1234")
-testuser.login("Thegaijin", "1234")
-print(testuser.logout("Thegaijin")) '''
+new_user = User('Thegaijin', '1234')
+testuser.signup(new_user)
+print(testuser.login("Thegaijin", "1234")) '''
