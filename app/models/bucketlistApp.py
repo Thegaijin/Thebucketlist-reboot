@@ -1,5 +1,7 @@
 # /app/models/bucketlistApp.py
 
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 from .users import User
 
 
@@ -13,19 +15,25 @@ class BucketlistApp(object):
         self.usercredentials = {}
         self.loggedin = []
 
-    def signup(self, new_user):
+    def signup(self, username, password):
         """method to save users on sign up
 
         Keyword Arguments:
-        username -- The name the user would like to use
-        password -- The password the user would like to use
-        confirmation_password -- Password to compare with above
+        username -- New users username
+        password -- New users password
         """
-        self.users[new_user.username] = new_user
-        self.usercredentials[new_user.username] = new_user.password
-        return new_user
+        # hashing the password
+        pswd_hash = generate_password_hash(password)
 
-    # @classmethod
+        # creating instance of new_user
+        new_user = User(username, pswd_hash)
+
+        # add the instance of User to the users dictionary and add the
+        # username as a key and password as value to usercredentials
+        self.users[new_user.username] = new_user
+        self.usercredentials[username] = pswd_hash
+        return True
+
     def login(self, username, password):
         """Method to login existing users
 
@@ -33,9 +41,17 @@ class BucketlistApp(object):
         username -- The name the user signed up with
         password -- The password the user signed up with
         """
+        # check if username exists
         if username in self.usercredentials:
-            if password == self.usercredentials[username]:
+
+            # check if password matches the value of the username key
+            hashed_pswd = self.usercredentials[username]
+            if check_password_hash(hashed_pswd, password) == True:
+
+                # add username to loggedin users list
                 self.loggedin.append(username)
+
+                # return that users instance
                 return self.users[username]
             return "The username and password combination \
                      does not exist"
@@ -55,6 +71,6 @@ class BucketlistApp(object):
 
 # CALLING THE FUNCTIONS: testing signup and login functionality
 ''' testuser = BucketlistApp()
-new_user = User('Thegaijin', '1234')
-testuser.signup(new_user)
+print(testuser.signup('Thegaijin', '1234'))
+print("**********************")
 print(testuser.login("Thegaijin", "1234")) '''

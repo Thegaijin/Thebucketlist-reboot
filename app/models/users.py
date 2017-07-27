@@ -20,7 +20,7 @@ def checker(func):
         if args[0] not in self.user_lists:
             return False
         return func(self, *args)
-    return view_list
+    return check_list
 
 
 class User(object):
@@ -48,15 +48,13 @@ class User(object):
             return listname
         return "A list by that name already exists"
 
-    @checker
-    def view_list(self, listname):
+    def view_list(self):
         """Method to view a list
-        
+
         Keyword Arguments:
         listname -- The name of the list to view
-        """ 
-        the_list = self.user_lists[listname]
-        return True
+        """
+        return self.user_lists
 
     @checker
     def update_list(self, listname, details=""):
@@ -131,13 +129,17 @@ class User(object):
         item_list.remove(item)
         return item_list
 
+    ''' def __repr__(self):
+        return '<User %r>' % (self.username)
+    '''
+
 
 # CALLING THE FUNCTIONS: Testing functionality
-new = User("Thegaijin", "tinktink")
+''' new = User("Thegaijin", "tinktink")
 print(new.create_list("Travel", "Places to go"))
-print(new.add_item("Travel", "Mt Kenya"))
-print(new.add_item("Travel", "Tsavo"))
-print(new.add_item("Travel", "Gulu"))
-print(new.update_item("Travel", "Tsavo", "Jinja"))
-print(new.delete_item("Travel", "Gulu"))
-print(new.view_list("Travel")) 
+print(new.create_list("Fly", "Sky high"))
+print(new.create_list("Work", "Start company"))
+print(new.create_list("Program", "Write code"))
+print(new.create_list("Life", "get married"))
+
+print(new.view_list())  '''
