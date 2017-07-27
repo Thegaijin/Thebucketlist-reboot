@@ -1,13 +1,18 @@
 # /app/__init__.py
 
 from flask import Flask
+from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
+
+
+# variable login_manager assigned an instance of class LoginManager
+login_manager = LoginManager()
 
 # variable app assigned an instance of class flask
 app = Flask(__name__)
 app.config.from_object('config')
-# variable login_manager assigned an instance of class LoginManager
-login_manager = LoginManager()
+
+Bootstrap(app)
 
 # For user session management and remember the users’ session
 login_manager.init_app(app)

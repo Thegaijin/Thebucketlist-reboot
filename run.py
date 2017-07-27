@@ -1,4 +1,4 @@
-# /run.py
+# run.py
 
 from app import app
 from flask_debugtoolbar import DebugToolbarExtension

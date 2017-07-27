@@ -1,3 +1,3 @@
-# /app/config.py
+# config.py
 
 SECRET_KEY = '!xe456$%^&xcn&hfdjk%'
