@@ -4,14 +4,15 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
-  - pip install coveralls
-  - pip install codecov
+ # - pip install coveralls
+ # - pip install codecov
 
 # command to run tests
 script: 
-  - py.test --cov=Thebucketlist-reboot tests/
-  - py.test tests/ --doctest-modules --pep8 app -v --cov app --cov-report term-missing
-  - coverage run tests/
+  - pytest
+#  - py.test --cov=Thebucketlist-reboot tests/
+#  - py.test tests/ --doctest-modules --pep8 app -v --cov app --cov-report term-missing
+#  - coverage run tests/
 after_success:
   - coveralls
   - codecov
