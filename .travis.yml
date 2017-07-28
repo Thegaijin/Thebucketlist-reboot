@@ -9,7 +9,9 @@ install:
 
 # command to run tests
 script: 
-  - py.test --cov=./
+  - py.test --cov=Thebucketlist-reboot tests/
+  - py.test tests/ --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
+  - coverage run tests/
 after_success:
   - coveralls
   - codecov
