@@ -2,10 +2,13 @@
 
 from app.models.users import User
 from app.models.bucketlistApp import BucketlistApp
+from flask import flash
 from flask_wtf import FlaskForm
 from wtforms import (validators, StringField,
                      SubmitField, PasswordField, ValidationError)
 from wtforms.validators import DataRequired, EqualTo
+
+user = BucketlistApp()
 
 
 class SignUpForm(FlaskForm):
@@ -17,17 +20,13 @@ class SignUpForm(FlaskForm):
     confirm_password = PasswordField('Repeat Password')
     submit = SubmitField('Sign Up')
 
-    def __init__(self, *args, **kwargs):
-        FlaskForm.__init__(self, *args, **kwargs)
-
-    def validate_username(self, username):
+    def validate_username(self, field):
         """Method checks if username already exists"""
 
-        username = self.username.data
-        newuser = BucketlistApp()
-        if username in newuser.usercredentials:
+        username = field.data
+        if username in user.users:
+            flash('Username is already in use.')
             raise ValidationError('Username is already in use.')
-            return False
         return True
 
 
@@ -35,27 +34,22 @@ class LoginForm(FlaskForm):
     """Form for users to log in"""
 
     username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('New Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log in')
 
-    def __init__(self, *args, **kwargs):
-        FlaskForm.__init__(self, *args, **kwargs)
-        self.newuser = BucketlistApp()
-
-    def validate_username(self, username):
+    def validate_usercredentials(self, field):
         """Method checks if username belongs to a user"""
-        username = self.username.data
 
-        if username not in self.newuser.usercredentials:
-            return False
+        username = field.data
+        if username not in user.users:
+            flash('Username does not exist.')
+            raise ValidationError('Username does not exist.')
         return True
 
-    ''' def validate_password(self, username, password):
-        """Method checks if username belongs to a user"""
-        username = self.username.data
-        password = self.password.data
 
-        if password != self.newuser.usercredentials[username]:
-            return False
-        return True
-    '''
+class ListForm(FlaskForm):
+    """Form for user to add lists"""
+
+    name = StringField('Name', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
+    submit = SubmitField('Add list')

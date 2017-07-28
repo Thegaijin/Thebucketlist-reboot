@@ -1,5 +1,6 @@
 # /app/models/users.py
 
+from flask_login import UserMixin
 from .lists import Lists
 
 
@@ -23,15 +24,21 @@ def checker(func):
     return check_list
 
 
-class User(object):
+class User(UserMixin):
     """The User clas is used to create, edit, update and delete bucketlists.
     It is also used to add, view, update, and delete items from the lists
     """
 
-    def __init__(self, username, password):
+    def __init__(self, id, username, pswd_hash):
+        self.id = id
         self.username = username
-        self.password = password
+        self.pswd_hash = pswd_hash
         self.user_lists = {}
+
+    ''' def get_id(self):
+        """Overriding the id parameter to be username"""
+
+        return self.username '''
 
     def create_list(self, listname, details):
         """Method to create lists
