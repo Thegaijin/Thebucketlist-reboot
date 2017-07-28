@@ -125,7 +125,8 @@ h3 {
 
 /* Contact form */
 
-form {
+
+/* form {
     text-align: center;
 }
 
@@ -194,7 +195,7 @@ form input#submit:hover {
     background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
     background-image: linear-gradient(top, #dbdbdb, #cccccc);
     filter: progid: DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#dbdbdb, endColorstr=#cccccc);
-}
+} */
 
 
 /* Message flashing */
@@ -208,9 +209,10 @@ form input#submit:hover {
 
 /* Signup and login form */
 
-form input#username,
+
+/* form input#username,
 form input#password,
-form input#confirmpassword {
+form input#confirm_password {
     width: 300px;
     background-color: #fafafa;
     -webkit-border-radius: 3px;
@@ -223,4 +225,53 @@ form input#confirmpassword {
 
 form input#password {
     margin-bottom: 10px;
+} */
+
+
+/* Lists table */
+
+.content-section {
+    /* padding: 50px 0; */
+    border-top: 1px solid #e7e7e7;
+    padding: 10px 0 30px 0;
+    background-color: rgba(18, 216, 18, 0.3);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 70%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -4em;
 }

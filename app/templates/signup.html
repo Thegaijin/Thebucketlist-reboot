@@ -1,26 +1,11 @@
 <!-- /app/templates/signup.html -->
 
-{% extends "layout.html" %}{% block content %}
+{% import "bootstrap/utils.html" as utils %}{% import "bootstrap/wtf.html" as wtf %}{% extends "layout.html" %}{% block title %}Sign Up{% endblock %} {% block body %}
 
-<div class="jumbo">
-    <div class="container">
+<div class="content-section">
+    <div class="center">
         <h2>Sign up</h2>
-
-        {% for message in form.username.errors %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %} {% for message in form.password.errors %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %} {% for message in form.password.errors %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %}
-        <!-- Sign up form -->
-        <form method="POST" action="{{ url_for('signup') }}">
-
-            {{ form.hidden_tag() }} {{ form.username.label }} {{ form.username }} {{ form.password.label }} {{ form.password }} {{ form.confirmpassword.label }} {{ form.confirmpassword }} {{ form.submit }}
-            <p class="message">Already registered? <a href="{{ url_for('login') }}" class="account">Log in</a></p>
-        </form>
-
-        <!-- End of signup form -->
+        <br/> {{ wtf.quick_form(form) }}
     </div>
 </div>
 {% endblock %}

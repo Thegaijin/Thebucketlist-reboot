@@ -10,7 +10,7 @@
 
     <strong>
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/css/style.css') }}"></strong>
-    <title>The Bucketlist</title>
+    <title>{{ title }} | Bucketlist</title>
 </head>
 
 <body>
@@ -23,6 +23,7 @@
                     {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('profile') }}">Lists</a></li>
                     <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
+                    <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
                     {% else %}
                     <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
                     <li><a href="{{ url_for('login') }}">Sign In</a></li>
@@ -31,8 +32,9 @@
             </nav>
         </div>
     </header>
-    <div class="container home">
-        {% block content%} {% endblock %}
+    <div class="wrapper">
+        {% block body %} {% endblock %}
+        <div class="push"></div>
     </div>
     <script src="{{url_for( 'static', filename='styles/js/jquery.min.js' ) }}"></script>
     <script src="{{url_for( 'static', filename='styles/js/bootstrap.min.js' ) }}"></script>
