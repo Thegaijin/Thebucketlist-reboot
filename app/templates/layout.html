@@ -6,11 +6,13 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Bell|Amatic+SC:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/css/bootstrap.min.css') }}">;
-
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/css/bootstrap.min.css') }}">
     <strong>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/css/style.css') }}"></strong>
-    <title>{{ title }} | Bucketlist</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/css/style.css') }}"></strong> {% if current_user.is_authenticated %}
+    <title> {{ current_user.username }}'s Bucketlist</title>
+    {% else %}
+    <title>The Bucketlist</title>
+    {% endif %}
 </head>
 
 <body>
@@ -21,7 +23,7 @@
                 <ul class="menu">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('profile') }}">Lists</a></li>
+                    <li><a href="{{ url_for('view_lists') }}">Lists</a></li>
                     <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
                     <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
                     {% else %}
