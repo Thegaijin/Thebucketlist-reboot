@@ -84,7 +84,7 @@ def login():
 def load_user(username):
     """Loads user from the users dictionary"""
     flash("In user loader")
-    return user.users.get(id)
+    return user.users.get(username)
 
 
 @app.route('/logout')
@@ -100,7 +100,7 @@ def logout():
 
 
 @app.route('/view_lists', methods=["GET", "POST"])
-# @login_required
+@login_required
 def view_lists():
     """Render the lists template on the /lists route"""
 
@@ -108,6 +108,7 @@ def view_lists():
 
 
 @app.route('/add_list', methods=["GET", "POST"])
+@login_required
 def add_list():
     """Render the list template on the /list route"""
     form = ListForm()
