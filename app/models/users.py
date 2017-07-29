@@ -5,7 +5,7 @@ from .lists import Lists
 
 
 def checker(func):
-    """Decorator function that takes in a function 
+    """Decorator function that takes in a function
 
     Keyword arguments:
     func -- function to be decorated
@@ -142,11 +142,15 @@ class User(UserMixin):
 
 
 # CALLING THE FUNCTIONS: Testing functionality
-''' new = User("Thegaijin", "tinktink")
+new = User(2, "Thegaijin", "tinktink")
 print(new.create_list("Travel", "Places to go"))
-print(new.create_list("Fly", "Sky high"))
+''' print(new.create_list("Fly", "Sky high"))
 print(new.create_list("Work", "Start company"))
 print(new.create_list("Program", "Write code"))
 print(new.create_list("Life", "get married"))
-
-print(new.view_list())  '''
+print("***********************************")
+print(new.view_list())
+print("***********************************")
+print(new.delete_list("Life")) '''
+print(new.add_item("Travel", "Go to Ibiza"))
+print(new.view_item("Travel", "Go to Ibiza"))

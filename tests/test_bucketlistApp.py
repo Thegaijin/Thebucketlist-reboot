@@ -49,8 +49,8 @@ class BucketlistAppTestCase(unittest.TestCase):
         exists in the users dictionary
         """
         self.current.signup(self.new_user)
-        self.current.login("username", "pswd")
-        self.assertEqual("pswd", self.users["username"].pswd_hash,
+        self.current.login("username", "password")
+        self.assertEqual("password", self.users["username"].pswd_hash,
                          msg="The username and password combination does not exist")
 
     ''' def test_if_user_was_logged_out(self):

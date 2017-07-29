@@ -7,7 +7,7 @@ class UserTestCase(unittest.TestCase):
     """Testing the functionality of the methods in the User class"""
 
     def setUp(self):
-        self.user = User("username", "tinktink")
+        self.user = User(1, "username", "tinktink")
         self.user_lists = self.user.user_lists
 
     def test_User_instance(self):
@@ -27,12 +27,12 @@ class UserTestCase(unittest.TestCase):
         list1 = self.user.create_list("listname", "details")
         list2 = self.user.create_list("listname", "details1")
         self.assertNotEqual(list1, list2,
-                      msg="A list by that name already exists")
+                            msg="A list by that name already exists")
 
     def test_view_list_method(self):
         """Test if list is displayed as long as it exists"""
-        viewed = self.user.view_list("listname")
-        self.assertTrue(viewed)
+        viewed = self.user.view_list()
+        self.assertIsInstance(viewed, dict)
 
     def test_if_list_updated_on_update(self):
         """Test if a list is updated"""
@@ -43,8 +43,11 @@ class UserTestCase(unittest.TestCase):
 
     def test_list_deletion(self):
         """Test if list is deleted from users lists"""
-        newlists = self.user.delete_list("listname")
-        self.assertNotIn("listname", newlists)
+        self.user_lists = ["Travel", "work"]
+        newlist = self.user.delete_list("Travel")
+        print(newlist)
+        listlength = len(newlist)
+        self.assertEqual(1, listlength)
 
     def test_add_item_to_list(self):
         """Test if an item is added to a list"""
