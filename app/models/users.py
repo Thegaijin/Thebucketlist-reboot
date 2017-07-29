@@ -35,10 +35,10 @@ class User(UserMixin):
         self.pswd_hash = pswd_hash
         self.user_lists = {}
 
-    ''' def get_id(self):
+    def get_id(self):
         """Overriding the id parameter to be username"""
 
-        return self.username '''
+        return self.username
 
     def create_list(self, listname, details):
         """Method to create lists
@@ -142,15 +142,15 @@ class User(UserMixin):
 
 
 # CALLING THE FUNCTIONS: Testing functionality
-new = User(2, "Thegaijin", "tinktink")
+''' new = User(2, "Thegaijin", "tinktink")
 print(new.create_list("Travel", "Places to go"))
-''' print(new.create_list("Fly", "Sky high"))
+ print(new.create_list("Fly", "Sky high"))
 print(new.create_list("Work", "Start company"))
 print(new.create_list("Program", "Write code"))
 print(new.create_list("Life", "get married"))
 print("***********************************")
 print(new.view_list())
 print("***********************************")
-print(new.delete_list("Life")) '''
+print(new.delete_list("Life")) 
 print(new.add_item("Travel", "Go to Ibiza"))
-print(new.view_item("Travel", "Go to Ibiza"))
+print(new.view_item("Travel", "Go to Ibiza")) '''
