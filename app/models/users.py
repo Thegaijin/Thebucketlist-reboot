@@ -52,7 +52,7 @@ class User(UserMixin):
         if listname not in self.user_lists:
             new_list = Lists(listname, details)
             self.user_lists[listname] = new_list
-            return listname
+            return self.user_lists
         return "A list by that name already exists"
 
     def view_list(self):
