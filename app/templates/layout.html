@@ -23,7 +23,7 @@
                 <ul class="menu">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('view_lists') }}">Lists</a></li>
+                    <li><a href="{{ url_for('add_list') }}">Lists</a></li>
                     <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
                     <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
                     {% else %}
