@@ -74,7 +74,7 @@ def login():
             flash("Now inside if statement")
             login_user(loggedin)
             flash("After login user")
-            return redirect(url_for('view_lists'))
+            return redirect(url_for('add_list'))
 
     # render the login template
     return render_template('login.html', form=form)
@@ -99,27 +99,44 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/view_lists', methods=["GET", "POST"])
-@login_required
-def view_lists():
-    """Render the lists template on the /lists route"""
-
-    return render_template('lists.html', title="Lists")
-
-
 @app.route('/add_list', methods=["GET", "POST"])
 @login_required
 def add_list():
-    """Render the list template on the /list route"""
+    """Render the list template on the /add_list route"""
+
+    add_list = True
     form = ListForm()
     if form.validate_on_submit():
-        name = form.name.data
-        description = form.description.data
+        listname = form.name.data
+        details = form.description.data
 
-        new_list = user.users[username].create_list(name, description)
-        flash(new_list)
-        return redirect(url_for('view_lists'))
+        all_lists = user.users[current_user.username].create_list(
+            listname, details)
+        list_objs = list(all_lists.values())
+        flash(all_lists)
+        flash(type(all_lists))
+        flash(list_objs)
 
-    return render_template('list.html', form=form, title="Lists")
-# Reload the user object from the user name stored in the session
-# Stores the active user’s ID in the session
+        return render_template('lists.html', form=form, title="Lists", lists=list_objs)
+
+    return render_template('lists.html', form=form, title="Lists")
+
+
+@app.route('/edit_list', methods=['GET', 'POST'])
+@login_required
+def edit_list():
+    """Render the list template on the /edit_list route"""
+
+    add_list = False
+    form = ListForm(obj=alist)
+    if form.validate_on_submit():
+        alist.listname = form.name.data
+        alist.details = form.description.data
+
+        all_lists = user.users[current_user.username].create_list(
+            alist.listname, alist.details)
+        list_objs = list(all_lists.values())
+
+        return render_template('lists.html', form=form, title="Lists", lists=list_objs)
+
+    return render_template('lists.html', form=form, title="Lists")
