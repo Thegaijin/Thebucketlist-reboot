@@ -15,7 +15,12 @@ cd bucketlist
 Create the virtual environment and activate it
 
 ```virtualenv env
+
+###### For Linux and OSX
 source env/bin/activate
+
+###### For windows
+env\Scripts\activate
 ```
 
 ### if you have virtualwrapper setup
@@ -32,8 +37,7 @@ pip install -r requirements.txt
 
 ### To start the application, run the run.py file
 
-```
-python run.py
+```python run.py
 ```
 ### head to the URL you see in the console
 
