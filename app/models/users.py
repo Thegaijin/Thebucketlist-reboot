@@ -40,7 +40,7 @@ class User(UserMixin):
 
         return self.username
 
-    def create_list(self, listname, details):
+    def create_list(self, id, listname, details):
         """Method to create lists
 
         Keyword Arguments:
@@ -50,30 +50,33 @@ class User(UserMixin):
         """
 
         if listname not in self.user_lists:
-            new_list = Lists(listname, details)
+            new_list = Lists(id, listname, details)
             self.user_lists[listname] = new_list
             return self.user_lists
         return "A list by that name already exists"
 
-    def view_list(self):
+    def view_list(self, listname):
         """Method to view a list
 
         Keyword Arguments:
         listname -- The name of the list to view
         """
-        return self.user_lists
+        return self.user_lists[listname]
 
     @checker
-    def update_list(self, listname, details=""):
+    def edit_list(self, listname, details=""):
         """method to update the properties of a list
 
         Keyword Arguments:
         listame -- The name of the bucketlist to update
         details -- The new property of the bucketlist
         """
-        updatedlist = Lists(listname, details)
-        self.user_lists[listname] = updatedlist
-        return updatedlist
+        if details == None:
+            details = '-'
+        new_list = Lists(id, listname, details)
+        self.user_lists[listname] = new_list
+        # print(new_list.details)
+        return self.user_lists
 
     @checker
     def delete_list(self, listname):
@@ -144,13 +147,14 @@ class User(UserMixin):
 # CALLING THE FUNCTIONS: Testing functionality
 ''' new = User(2, "Thegaijin", "tinktink")
 print(new.create_list("Travel", "Places to go"))
- print(new.create_list("Fly", "Sky high"))
+print(new.create_list("Fly", "Sky high"))
 print(new.create_list("Work", "Start company"))
 print(new.create_list("Program", "Write code"))
 print(new.create_list("Life", "get married"))
 print("***********************************")
 print(new.view_list())
 print("***********************************")
-print(new.delete_list("Life")) 
+print(new.delete_list("Life"))
 print(new.add_item("Travel", "Go to Ibiza"))
-print(new.view_item("Travel", "Go to Ibiza")) '''
+print(new.view_item("Travel", "Go to Ibiza"))
+print(new.edit_list("Travel", "Places to visit")) '''
