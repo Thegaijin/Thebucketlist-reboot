@@ -1,4 +1,4 @@
-# /app/forms.py
+# app/forms.py
 
 from app.models.users import User
 from app.models.bucketlistApp import BucketlistApp

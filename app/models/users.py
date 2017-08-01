@@ -1,4 +1,4 @@
-# /app/models/users.py
+# app/models/users.py
 
 from flask_login import UserMixin
 from .lists import Lists
@@ -71,7 +71,7 @@ class User(UserMixin):
         listame -- The name of the bucketlist to update
         details -- The new property of the bucketlist
         """
-        if details == None:
+        if details is None:
             details = '-'
         new_list = Lists(id, listname, details)
         self.user_lists[listname] = new_list
@@ -85,7 +85,7 @@ class User(UserMixin):
         Keyword Arguments:
         listame -- The name of the bucketlist to delete
         """
-        del(self.user_lists[listname])
+        del self.user_lists[listname]
         return self.user_lists
 
     @checker

@@ -1,4 +1,4 @@
-# /app/models/lists.py
+# app/models/lists.py
 
 
 class Lists(object):

@@ -1,4 +1,5 @@
-# /app/views.py
+# app/views.py
+
 from app import app
 from app.models.users import User
 from app.models.bucketlistApp import BucketlistApp
@@ -121,10 +122,12 @@ def add_list():
         flash(type(all_lists))
         flash(list_objs)
 
-        return render_template('lists.html', form=form, action="Add", title="Add List", lists=list_objs)
+        return render_template('lists.html', form=form, action="Add",
+                               title="Add List", lists=list_objs)
     lists = user.users[current_user.username].user_lists
     list_objs = list(lists.values())
-    return render_template('lists.html', form=form, action="Add", title="Lists", lists=list_objs)
+    return render_template('lists.html', form=form, action="Add",
+                           title="Lists", lists=list_objs)
 
 
 @app.route('/edit_list/<listname>', methods=['GET', 'POST'])
@@ -143,7 +146,8 @@ def edit_list(listname):
             name, details)
         list_objs = list(all_lists.values())
 
-        return render_template('lists.html', form=form, action="Edit", title="Edit List", lists=list_objs)
+        return render_template('lists.html', form=form, action="Edit",
+                               title="Edit List", lists=list_objs)
     flash("Edit the {} list".format(listname))
     return render_template('lists.html', form=form, action="Edit", title="Edit List")
 
