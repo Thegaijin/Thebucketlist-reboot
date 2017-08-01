@@ -26,11 +26,14 @@ workon env
 
 ### run the command below to install the module dependencies
 
+```
 pip install -r requirements.txt
+```
 
 ### To start the application, run the run.py file
 
-```python run.py
+```
+python run.py
 ```
 ### head to the URL you see in the console
 
