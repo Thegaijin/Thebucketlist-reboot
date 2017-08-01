@@ -52,11 +52,11 @@ class ListForm(FlaskForm):
 
     name = StringField('Name', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
-    submit = SubmitField('submit')
+    submit = SubmitField('Add/Edit list')
 
 
 class ItemForm(FlaskForm):
     """Form for user to add items"""
 
     name = StringField('Name', validators=[DataRequired()])
-    submit = SubmitField('submit')
+    submit = SubmitField('Add/Edit Item')
