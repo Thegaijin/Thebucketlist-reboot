@@ -11,7 +11,7 @@
                 <div style="text-align: center">
 
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                        <i class="fa fa-plus"></i>Input
+                        <i class="fa fa-plus"></i>Click here
                     </button>
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -31,7 +31,7 @@
                                                 {% if add_item %}
                                                 <h1>Add item</h1>
                                                 {% else %}
-                                                <h1>Edit item</h1>
+                                                <h1>Add/Edit item</h1>
                                                 {% endif %}
                                                 <br/> {{ wtf.quick_form(form) }}
                                             </div>
@@ -44,6 +44,7 @@
                     </div>
                     </a>
                 </div>
+                <!-- The items table -->
                 {% if items %}
                 <hr class="intro-divider">
                 <div class="center">
@@ -75,6 +76,7 @@
                     </table>
                 </div>
                 {% else %}
+                <!-- End of Items table -->
                 <div style="text-align: center">
                     <h3> No items have been added. </h3>
                     <hr class="intro-divider">
