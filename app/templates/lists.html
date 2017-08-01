@@ -64,7 +64,7 @@
                                 <td> {{ alist.listname }} </td>
                                 <td> {{ alist.details }} </td>
                                 <td>
-                                    {% if alist.items %} {{ alist.items.length }} {% else %} 0 {% endif %}
+                                    {% if alist.items %} {{ alist.items|length }} {% else %} 0 {% endif %}
                                 </td>
                                 <td>
                                     <a href="{{ url_for('view_list', listname=alist.listname) }}">
