@@ -109,34 +109,57 @@ def add_list():
     if form.validate_on_submit():
         listname = form.name.data
         details = form.description.data
+        if listname not in user.users[current_user.username].user_lists:
+            # creating a user id
+            if len(user.users[current_user.username].user_lists) == 0:
+                id = 1
+            id = len(user.users[current_user.username].user_lists) + 1
 
         all_lists = user.users[current_user.username].create_list(
-            listname, details)
+            id, listname, details)
         list_objs = list(all_lists.values())
         flash(all_lists)
         flash(type(all_lists))
         flash(list_objs)
 
-        return render_template('lists.html', form=form, title="Lists", lists=list_objs)
+        return render_template('lists.html', form=form, action="Add", title="Add List", lists=list_objs)
 
-    return render_template('lists.html', form=form, title="Lists")
+    return render_template('lists.html', form=form, action="Add", title="Add List")
 
 
-@app.route('/edit_list', methods=['GET', 'POST'])
+@app.route('/edit_list/<listname>', methods=['GET', 'POST'])
 @login_required
-def edit_list():
-    """Render the list template on the /edit_list route"""
+def edit_list(listname):
+    """Enable functionality on the /edit_list route"""
 
     add_list = False
-    form = ListForm(obj=alist)
+    the_list = user.users[current_user.username].view_list(listname)
+    form = ListForm(the_list.name, the_list.description)
     if form.validate_on_submit():
-        alist.listname = form.name.data
-        alist.details = form.description.data
+        name = form.name.data
+        details = form.description.data
 
-        all_lists = user.users[current_user.username].create_list(
-            alist.listname, alist.details)
+        all_lists = user.users[current_user.username].edit_list(
+            name, details)
         list_objs = list(all_lists.values())
 
-        return render_template('lists.html', form=form, title="Lists", lists=list_objs)
+        return render_template('lists.html', form=form, action="Edit", title="Edit List", lists=list_objs)
 
-    return render_template('lists.html', form=form, title="Lists")
+    return render_template('lists.html', form=form, action="Edit", title="Edit List")
+
+
+@app.route('/delete_list/<listname>', methods=['GET', 'POST'])
+@login_required
+def delete_list(listname):
+    """Enable the delete functionality on the delete_list route"""
+    # the_list = user.users[current_user.username].user_lists[listname]
+    form = ListForm()
+    all_lists = user.users[current_user.username].delete_list(listname)
+    list_objs = list(all_lists.values())
+
+    return render_template('lists.html', form=form, title="Lists", lists=list_objs)
+
+
+@app.route('/view_list/listname', methods=['GET', 'POST'])
+@login_required
+def view_list(listname):
