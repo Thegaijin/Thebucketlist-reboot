@@ -208,4 +208,5 @@ def delete_item(listname, itemname):
     items = user.users[current_user.username].delete_item(
         listname, itemname)
     form = ListForm()
-    return redirect(url_for('view_list', listname=listname))
+    return render_template('items.html', title='Items', form=form,
+                           items=items, listname=listname)
