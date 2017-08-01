@@ -122,8 +122,9 @@ def add_list():
         flash(list_objs)
 
         return render_template('lists.html', form=form, action="Add", title="Add List", lists=list_objs)
-
-    return render_template('lists.html', form=form, action="Add", title="Add List")
+    lists = user.users[current_user.username].user_lists
+    list_objs = list(lists.values())
+    return render_template('lists.html', form=form, action="Add", title="Add List", lists=list_objs)
 
 
 @app.route('/edit_list/<listname>', methods=['GET', 'POST'])
@@ -133,7 +134,7 @@ def edit_list(listname):
 
     add_list = False
     the_list = user.users[current_user.username].view_list(listname)
-    form = ListForm(the_list.name, the_list.description)
+    form = ListForm(obj=the_list)
     if form.validate_on_submit():
         name = form.name.data
         details = form.description.data
@@ -171,8 +172,40 @@ def view_list(listname):
     Key Arguments:
     listname -- Name of list to be viewed
     """
-    form = ItemForm()
     the_list = user.users[current_user.username].view_list(listname)
+    form = ItemForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        items = user.users[current_user.username].add_item(listname, name)
     items = the_list.items
 
-    return render_template('items.html', title='Items', items=items)
+    return render_template('items.html', title='Items', form=form,
+                           items=items, listname=listname)
+
+
+@app.route('/edit_item/<listname>/<itemname>', methods=['GET', 'POST'])
+@login_required
+def edit_item(listname, itemname):
+    the_items = user.users[current_user.username].view_items(listname)
+    the_item = user.users[current_user.username].view_item(listname, itemname)
+    form = ItemForm(obj=the_item)
+    if form.validate_on_submit():
+        name = form.name.data
+
+        # Applying changes to item
+        items = user.users[current_user.username].update_item(
+            listname, itemname, name)
+        flash("Changes")
+        return redirect(url_for('view_list', listname=listname))
+    flash(listname)
+    return render_template('items.html', title='Items', form=form,
+                           items=the_items, listname=listname)
+
+
+@app.route('/delete_item/<listname>/<itemname>', methods=['GET', 'POST'])
+@login_required
+def delete_item(listname, itemname):
+    items = user.users[current_user.username].delete_item(
+        listname, itemname)
+    form = ListForm()
+    return redirect(url_for('view_list', listname=listname))

@@ -109,7 +109,18 @@ class User(UserMixin):
         """
         item_list = self.user_lists[listname].items
         if item in item_list:
-            return True
+            return item
+        return 'Item not in list'
+
+    def view_items(self, listname):
+        """method to view the properties of an item
+
+        Keyword Arguments:
+        listame -- The name of the list to update
+        item -- name of the item in the bucketlist to view
+        """
+        item_list = self.user_lists[listname].items
+        return item_list
 
     @checker
     def update_item(self, listname, item, item_edit):
@@ -121,10 +132,13 @@ class User(UserMixin):
         item_edit -- the edit to the item
         """
         item_list = self.user_lists[listname].items
-        item_index = item_list.index(item)
-        item_list.remove(item)
-        item_list.insert(item_index, item_edit)
-        return item_list
+        if item in item_list:
+            item_list = self.user_lists[listname].items
+            item_index = item_list.index(item)
+            item_list.remove(item)
+            item_list.insert(item_index, item_edit)
+            return item_list
+        return self.add_item(listname, item)
         # FIXME: Incomplete functionality
 
     @checker
