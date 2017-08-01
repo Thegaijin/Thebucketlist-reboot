@@ -3,7 +3,7 @@ from app import app
 from app.models.users import User
 from app.models.bucketlistApp import BucketlistApp
 from app import login_manager
-from .forms import SignUpForm, LoginForm, ListForm
+from .forms import SignUpForm, LoginForm, ListForm, ItemForm
 from flask import (flash, redirect, render_template, request, session, url_for)
 from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -15,8 +15,7 @@ user = BucketlistApp()
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html',
-                           title='The')
+    return render_template('home.html')
 
 
 @app.route('/signup', methods=["GET", "POST"])
@@ -151,7 +150,11 @@ def edit_list(listname):
 @app.route('/delete_list/<listname>', methods=['GET', 'POST'])
 @login_required
 def delete_list(listname):
-    """Enable the delete functionality on the delete_list route"""
+    """Enable the delete functionality on the delete_list route
+
+    Key Arguments:
+    listname -- Name of list to be deleted
+    """
     # the_list = user.users[current_user.username].user_lists[listname]
     form = ListForm()
     all_lists = user.users[current_user.username].delete_list(listname)
@@ -160,6 +163,16 @@ def delete_list(listname):
     return render_template('lists.html', form=form, title="Lists", lists=list_objs)
 
 
-@app.route('/view_list/listname', methods=['GET', 'POST'])
+@app.route('/view_list/<listname>', methods=['GET', 'POST'])
 @login_required
 def view_list(listname):
+    """Renders the items template to display items in list
+
+    Key Arguments:
+    listname -- Name of list to be viewed
+    """
+    form = ItemForm()
+    the_list = user.users[current_user.username].view_list(listname)
+    items = the_list.items
+
+    return render_template('items.html', title='Items', items=items)
