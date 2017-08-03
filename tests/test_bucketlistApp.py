@@ -25,13 +25,15 @@ class BucketlistAppTestCase(unittest.TestCase):
         """Test if the username enter at signup already exists
         in the system
         """
-        self.other_user = User(2, 'usrnme', 'pswd')
+
+        self.other_user = User(2, 'username', 'pswd')
         self.current.signup(self.new_user)
-        self.assertNotIn(self.other_user.username, self.users,
-                         msg="A user by that name already exists")
+        created = self.current.signup(self.other_user)
+        self.assertFalse(created, msg="A user by that name already exists")
 
     def test_if_user_can_sign_up(self):
         """Test to check if users are added to users dictionary"""
+
         self.current.signup(self.new_user)
         self.assertIn(self.new_user.username, self.users,
                       msg="The user was not able to sign up")

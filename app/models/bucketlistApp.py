@@ -35,10 +35,12 @@ class BucketlistApp(object):
         # add username as a key and new_user instance
         # as value to users dictionary
         if isinstance(new_user, User):
-            self.users[new_user.username] = new_user
-            print("id: {}, username: {}, password: {}".format(
-                new_user.id, new_user.username, new_user.pswd_hash))
-            return True
+            if new_user.username not in self.users:
+                self.users[new_user.username] = new_user
+                print("id: {}, username: {}, password: {}".format(
+                    new_user.id, new_user.username, new_user.pswd_hash))
+                return True
+            return False
         return 'User was not created'
 
     def login(self, username, password):
