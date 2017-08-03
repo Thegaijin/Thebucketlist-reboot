@@ -11,7 +11,7 @@ class BucketlistAppTestCase(unittest.TestCase):
     def setUp(self):
         self.current = BucketlistApp()
         self.users = self.current.users
-        self.new_user = User(id, 'username', 'password')
+        self.new_user = User(1, 'username', 'password')
 
     def test_bucketlistApp_instance(self):
         """Test if instance of bucketlistApp class is
@@ -25,18 +25,10 @@ class BucketlistAppTestCase(unittest.TestCase):
         """Test if the username enter at signup already exists
         in the system
         """
-
+        self.other_user = User(2, 'usrnme', 'pswd')
         self.current.signup(self.new_user)
-        self.assertNotIn(self.new_user.username, self.users,
+        self.assertNotIn(self.other_user.username, self.users,
                          msg="A user by that name already exists")
-
-    # Test is now redundant. checking done in forms
-    ''' def test_user_confirmation_password(self):
-        """Test to check if user entered correct confirmation
-        password when signing up"""
-        self.current.signup("username", "pswd", "pswd")
-        self.assertEqual(
-            "pswd", "pswd", msg="The password and confirmation password don't match") '''
 
     def test_if_user_can_sign_up(self):
         """Test to check if users are added to users dictionary"""

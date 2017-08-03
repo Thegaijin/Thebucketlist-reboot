@@ -18,25 +18,27 @@ class UserTestCase(unittest.TestCase):
 
     def test_creating_list(self):
         """Test if lists are added to the lists dictionary"""
-        self.user.create_list("listname", "details")
-        self.assertIn("listname", self.user_lists,
-                      msg="The list was not created")
+        self.user.create_list(1, "listname", "details")
+        self.user.create_list(2, "listname1", "details")
+        list_len = len(self.user_lists)
+        self.assertEqual(2, list_len,
+                         msg="The list was not created")
 
     def test_if_list_in_user_list(self):
         """Test if a list has already been added to the users lists"""
-        list1 = self.user.create_list("listname", "details")
-        list2 = self.user.create_list("listname", "details1")
+        list1 = self.user.create_list(1, "listname", "details")
+        list2 = self.user.create_list(2, "listname2", "details1")
         self.assertNotEqual(list1, list2,
                             msg="A list by that name already exists")
 
     def test_view_list_method(self):
         """Test if list is displayed as long as it exists"""
-        viewed = self.user.view_list()
-        self.assertIsInstance(viewed, dict)
+        viewed = self.user.view_list("listname")
+        self.assertEqual("listname", viewed.listname)
 
     def test_if_list_updated_on_update(self):
         """Test if a list is updated"""
-        self.user.create_list("listname", "details")
+        self.user.create_list(1, "listname", "details")
         updatedlist = self.user.update_list("listname", "newdetails")
         self.assertEqual(updatedlist.details, "newdetails",
                          msg="The details were not updated")
